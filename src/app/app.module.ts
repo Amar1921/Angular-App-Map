@@ -20,6 +20,8 @@ import { InfosComponent } from './infos/infos.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
 import { PlanComponent } from './plan/plan.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { PlanComponent } from './plan/plan.component';
     GoogleMapsModule,
     MatTooltipModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule,
+    MatListModule
 
 
   ],

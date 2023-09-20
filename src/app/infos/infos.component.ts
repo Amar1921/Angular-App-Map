@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 export interface EcoleData {
   nom: string;
@@ -12,5 +12,12 @@ export interface EcoleData {
   styleUrls: ['./infos.component.css']
 })
 export class InfosComponent {
-
+  @Input()
+  label: string
+  @Input()
+  adresse: string
+  @Input()
+  statut: string
+  @Input()
+  type: string
 }

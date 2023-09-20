@@ -1,5 +1,14 @@
-<button mat-raised-button
-        matTooltip="Info about the action"
-        aria-label="Button that displays a tooltip when focused or hovered over">
-  Action
-</button>
+<mat-card class="card">
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>Nom: {{label}}</mat-list-item>
+      <mat-list-item>Adresse: {{adresse}}</mat-list-item>
+      <mat-list-item>Type Etablissement:{{type}}</mat-list-item>
+      <mat-list-item>Statut: {{statut}}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+<!--    <button mat-button RouterLink="/"></button>-->
+    <a  mat-button href="/contact" >Contacter</a>
+  </mat-card-actions>
+</mat-card>

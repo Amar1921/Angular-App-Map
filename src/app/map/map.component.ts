@@ -6,15 +6,6 @@ import Marker from "../marker";
 import {Router} from "@angular/router";
 import {MapInfoWindow, MapMarker} from "@angular/google-maps";
 
-interface MarkerProperties {
-  position: {
-    lat: number;
-    lng: number;
-    title: string
-
-
-  }
-}
 
 @Component({
   selector: 'app-map',
@@ -46,11 +37,32 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   label: string
   zoom = 6;
   display: any;
+  nom: string
+  adresse: string
+  type: string
+  statut: string
   markerPositions: google.maps.LatLngLiteral[] = [];
   private router: any;
   @ViewChild(MapInfoWindow, {static: false}) infoWindow: MapInfoWindow;
-  openInfoWindow() {
-    console.log('AMAR')
+  openInfoWindow(marker :MapMarker ) {
+
+    this.ecoles.forEach(ecole=>{
+       let lat = marker.getPosition().lat()
+      let lng = marker.getPosition().lng()
+         if (ecole.latitude === lat && ecole.longitude===lng){
+           this.infoWindow.open(marker);
+           this.nom = ecole.nom_etablissement
+           this.adresse = ecole.adresse_1
+           this.type = ecole.type_etablissement
+           this.statut = ecole.libelle_nature
+           // console.log(ecole)
+           // console.log(marker.getPosition().lat())
+           // console.log(marker.getPosition().lng())
+         }
+
+    })
+
+
   }
 
 
@@ -79,59 +91,20 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
       console.log(this.marker)
   }
 
-  // addMarker(event: google.maps.MapMouseEvent) {
-  //   this.markerPositions.push(event.latLng.toJSON());
-  // }
-
-  /*------------------------------------------
-
-  --------------------------------------------
-
-  moveMap()
-
-  --------------------------------------------
-
-  --------------------------------------------*/
-
-  moveMap(event: google.maps.MapMouseEvent) {
-
-    if (event.latLng != null) this.center = (event.latLng.toJSON());
-
-  }
 
 
-  /*------------------------------------------
-
-  --------------------------------------------
-
-  move()
-
-  --------------------------------------------
-
-  --------------------------------------------*/
-
-  move(event: google.maps.MapMouseEvent) {
-
-    if (event.latLng != null) this.display = event.latLng.toJSON();
-
-  }
- getInfos(){
-    console.log('MARQUEUR')
- }
   getMark(){
      this.ecoles.map((ec)=>{
 
-      let mar2:google.maps.LatLngLiteral ={lat:null,
+      let marker:google.maps.LatLngLiteral ={lat:null,
       lng:null}
-       mar2.lng = ec.longitude
-       mar2.lat = ec.latitude
-       this.markerPositions.push(mar2)
+       marker.lng = ec.longitude
+       marker.lat = ec.latitude
+       this.markerPositions.push(marker)
        console.log(this.markerPositions)
 
      })
 
   }
-  openInfoWindow2(marker: MapMarker) {
-    this.infoWindow.open(marker);
-  }
+
 }

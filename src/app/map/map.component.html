@@ -50,13 +50,18 @@
       <map-marker #marker="mapMarker"
                   *ngFor="let markerPosition of markerPositions"
                   [position]="markerPosition"
-                  (mapClick)="openInfoWindow2(marker)"></map-marker>
-      <map-info-window>Info Window content</map-info-window>
+                  (mapClick)="openInfoWindow(marker)"></map-marker>
+      <map-info-window>
+        <app-infos
+        [label]="nom"
+        [adresse]="adresse"
+        [statut]="statut"
+        [type]="type"
+        >
+        </app-infos>
+      </map-info-window>
     </google-map>
 
-  </div>
-  <div class="col-12">
-    <app-infos></app-infos>
   </div>
   <div class="col-12 text-center my-2">
     <button (click)="getMark()" class="btn btn-outline-dark">Charger les marqueurs</button>
