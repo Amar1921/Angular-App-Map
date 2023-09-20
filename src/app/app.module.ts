@@ -15,7 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import { MapComponent } from './map/map.component';
-import {GoogleMap, GoogleMapsModule} from "@angular/google-maps";
+import { GoogleMapsModule} from "@angular/google-maps";
 import { InfosComponent } from './infos/infos.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
