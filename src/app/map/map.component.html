@@ -1,0 +1,76 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-8 d-flex justify-content-center mt-5">
+
+    <google-map height="500px"
+
+                width="800px"
+
+
+                [center]="mapOptions.center"
+
+                [zoom]="zoom"
+
+                (mapClick)="moveMap($event)"
+
+                (mapMousemove)="move($event)"
+                [options]="mapOptions">
+
+
+        <map-marker *ngFor="let marker of markers"
+                    [position]="marker.position"
+                    [title]="marker.position.title"
+                    (mapClick)="getInfos()"
+                    (click)="getInfoMarker(marker)"
+                    [routerLink]="['/contact']"
+        >
+
+        </map-marker>
+
+
+      <!--      <map-marker *ngFor="let ecole of ecoles"-->
+
+      <!--                  [position]="ecole.position"-->
+      <!--                  [title]="ecole.nom_etablissement"-->
+      <!--      >-->
+      <!--      </map-marker>-->
+
+    </google-map>
+
+
+  </div>
+  <div class="col-12 text-center my-2">
+    <button (click)="getMark()" class="btn btn-outline-dark">Charger les marqueurs</button>
+  </div>
+  <div class="col-10 center">
+    <div>Latitude: {{display?.lat}}</div>
+
+    <div>Longitude: {{display?.lng}}</div>
+  </div>
+  <div class="col-10" *ngIf="ecoles">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Commune</th>
+        <th>Telephone</th>
+        <th>Email</th>
+        <th>Etat</th>
+        <th>Code Postal</th>
+        <th>Code region</th>
+        <th>Code departement</th>
+        <th>Libelle academie</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let ecole of ecoles">
+        <td>{{ecole.nom_commune}}</td>
+        <td>{{ecole.telephone}}</td>
+        <td>{{ecole.mail}}</td>
+        <td>{{ecole.code_postal}}</td>
+        <td>{{ecole.code_region}}</td>
+        <td>{{ecole.code_departement}}</td>
+        <td>{{ecole.libelle_academie}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

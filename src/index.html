@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DevoirAngular</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" >
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script>
+    //https://developers.google.com/maps/documentation/javascript/overview?hl=fr#maps_map_simple-javascript
+    let map;
+
+      async function initMap() {
+        //@ts-ignore
+        const { Map } = await google.maps.importLibrary("maps");
+
+        map = new Map(document.getElementById("map"), {
+          center: { lat: 45.91901259337575, lng: 2.2843902000542315 },
+          zoom: 8,
+        });
+      }
+
+      //initMap();
+  </script>
+  <script async
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4ls7jvSPNYt3jhsBvVHmcI3ZY-AGkBFE&callback=initMap">
+  </script>
+</head>
+<body class="mat-typography">
+<app-root></app-root>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" ></script>
+</body>
+</html>
