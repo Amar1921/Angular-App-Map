@@ -1,45 +1,5 @@
 <div class="row d-flex justify-content-center">
   <div class="col-sm-8 d-flex justify-content-center mt-5">
-
-<!--    <google-map height="500px"-->
-
-<!--                width="800px"-->
-
-
-<!--                [center]="mapOptions.center"-->
-
-<!--                [zoom]="zoom"-->
-
-<!--                (mapClick)="moveMap($event)"-->
-
-<!--                (mapMousemove)="move($event)"-->
-<!--                [options]="mapOptions">-->
-
-
-<!--&lt;!&ndash;        <map-marker *ngFor="let marker of markers"&ndash;&gt;-->
-<!--&lt;!&ndash;                    [position]="marker.position"&ndash;&gt;-->
-<!--&lt;!&ndash;                    [title]="marker.position.title"&ndash;&gt;-->
-<!--&lt;!&ndash;                    (click)="getInfoMarker(marker)"&ndash;&gt;-->
-<!--&lt;!&ndash;                    (mapClick)="openInfoWindow()"&ndash;&gt;-->
-<!--&lt;!&ndash;                    [routerLink]="['/contact']"&ndash;&gt;-->
-<!--&lt;!&ndash;        >&ndash;&gt;-->
-<!--&lt;!&ndash;          <map-info-window>&ndash;&gt;-->
-<!--&lt;!&ndash;            <&#45;&#45; this is what i'm concerned with &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;            {{marker.position.title }}&ndash;&gt;-->
-<!--&lt;!&ndash;          </map-info-window>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        </map-marker>&ndash;&gt;-->
-
-
-<!--      &lt;!&ndash;      <map-marker *ngFor="let ecole of ecoles"&ndash;&gt;-->
-
-<!--      &lt;!&ndash;                  [position]="ecole.position"&ndash;&gt;-->
-<!--      &lt;!&ndash;                  [title]="ecole.nom_etablissement"&ndash;&gt;-->
-<!--      &lt;!&ndash;      >&ndash;&gt;-->
-<!--      &lt;!&ndash;      </map-marker>&ndash;&gt;-->
-
-<!--    </google-map>-->
-    <!-- google-maps-demo.component.html -->
     <google-map height="400px"
                 width="750px"
                 [center]="center"
@@ -62,40 +22,5 @@
       </map-info-window>
     </google-map>
 
-  </div>
-  <div class="col-12 text-center my-2">
-    <button (click)="getMark()" class="btn btn-outline-dark">Charger les marqueurs</button>
-  </div>
-  <div class="col-10 center">
-    <div>Latitude: {{display?.lat}}</div>
-
-    <div>Longitude: {{display?.lng}}</div>
-  </div>
-  <div class="col-10" *ngIf="ecoles">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Commune</th>
-        <th>Telephone</th>
-        <th>Email</th>
-        <th>Etat</th>
-        <th>Code Postal</th>
-        <th>Code region</th>
-        <th>Code departement</th>
-        <th>Libelle academie</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let ecole of ecoles">
-        <td>{{ecole.nom_commune}}</td>
-        <td>{{ecole.telephone}}</td>
-        <td>{{ecole.mail}}</td>
-        <td>{{ecole.code_postal}}</td>
-        <td>{{ecole.code_region}}</td>
-        <td>{{ecole.code_departement}}</td>
-        <td>{{ecole.libelle_academie}}</td>
-      </tr>
-      </tbody>
-    </table>
   </div>
 </div>

@@ -19,9 +19,9 @@ import {GoogleMap, GoogleMapsModule} from "@angular/google-maps";
 import { InfosComponent } from './infos/infos.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
-import { PlanComponent } from './plan/plan.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -35,7 +35,7 @@ import {MatListModule} from "@angular/material/list";
     EcoleListComponent,
     MapComponent,
     InfosComponent,
-    PlanComponent,
+
 
   ],
   imports: [
@@ -52,7 +52,8 @@ import {MatListModule} from "@angular/material/list";
     FormsModule,
     MatDialogModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule
 
 
   ],

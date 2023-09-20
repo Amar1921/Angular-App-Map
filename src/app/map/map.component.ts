@@ -1,9 +1,6 @@
-import {HttpClient} from "@angular/common/http";
-import {AfterViewInit, Component, Injectable, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import { Component, Injectable, OnInit, ViewChild} from '@angular/core';
 import Ecole from "../Ecole";
 import {EcoleService} from "../ecole.service";
-import Marker from "../marker";
-import {Router} from "@angular/router";
 import {MapInfoWindow, MapMarker} from "@angular/google-maps";
 
 
@@ -13,8 +10,8 @@ import {MapInfoWindow, MapMarker} from "@angular/google-maps";
   styleUrls: ['./map.component.css']
 })
 @Injectable()
-export class MapComponent implements OnInit, AfterViewInit, OnChanges {
-  @Input()
+export class MapComponent implements OnInit {
+ // @Input()
   ecole: EcoleService
   ecoles: Ecole[] = []
   mapOptions: google.maps.MapOptions = {
@@ -24,25 +21,23 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
 
 
-  marker:[]
-  @Input()
+
+ // @Input()
   title: string
   center: google.maps.LatLngLiteral
-  @Input()
+  //@Input()
   postion: {
     lat: number,
     lng: number
   }
-  @Input()
+  //@Input()
   label: string
   zoom = 6;
-  display: any;
   nom: string
   adresse: string
   type: string
   statut: string
   markerPositions: google.maps.LatLngLiteral[] = [];
-  private router: any;
   @ViewChild(MapInfoWindow, {static: false}) infoWindow: MapInfoWindow;
   openInfoWindow(marker :MapMarker ) {
 
@@ -55,9 +50,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
            this.adresse = ecole.adresse_1
            this.type = ecole.type_etablissement
            this.statut = ecole.libelle_nature
-           // console.log(ecole)
-           // console.log(marker.getPosition().lat())
-           // console.log(marker.getPosition().lng())
          }
 
     })
@@ -66,7 +58,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
 
-  constructor(private _ecole: EcoleService, private http: HttpClient, router: Router) {
+  constructor(private _ecole: EcoleService) {
     this.ecole = _ecole
   }
 
@@ -81,14 +73,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
     });
 
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes)
-  }
-
-  ngAfterViewInit(): void {
-      console.log(this.marker)
   }
 
 
