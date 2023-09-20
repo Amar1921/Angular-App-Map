@@ -9,6 +9,5 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
   }
-  // Fonction d'initialisation du composant.
 
 }
