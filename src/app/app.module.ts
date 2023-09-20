@@ -19,6 +19,7 @@ import {GoogleMap, GoogleMapsModule} from "@angular/google-maps";
 import { InfosComponent } from './infos/infos.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
+import { PlanComponent } from './plan/plan.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     EcoleListComponent,
     MapComponent,
     InfosComponent,
+    PlanComponent,
 
   ],
   imports: [

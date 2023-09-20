@@ -1,9 +1,10 @@
 import {HttpClient} from "@angular/common/http";
-import {AfterViewInit, Component, Injectable, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, Injectable, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import Ecole from "../Ecole";
 import {EcoleService} from "../ecole.service";
 import Marker from "../marker";
 import {Router} from "@angular/router";
+import {MapInfoWindow, MapMarker} from "@angular/google-maps";
 
 interface MarkerProperties {
   position: {
@@ -15,24 +16,23 @@ interface MarkerProperties {
   }
 }
 
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-
-
 @Injectable()
 export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   @Input()
   ecole: EcoleService
   ecoles: Ecole[] = []
   mapOptions: google.maps.MapOptions = {
-    center: {lat: 47.15209152066102, lng: -3.8095439060156},
+    center: {lat: 46.15209152066102, lng: -2.8095439060156},
     zoom: 12,
   };
-  markers: MarkerProperties[] = [];
+
+
+
   marker:[]
   @Input()
   title: string
@@ -44,10 +44,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   }
   @Input()
   label: string
-  zoom = 8;
+  zoom = 6;
   display: any;
   markerPositions: google.maps.LatLngLiteral[] = [];
   private router: any;
+  @ViewChild(MapInfoWindow, {static: false}) infoWindow: MapInfoWindow;
+  openInfoWindow() {
+    console.log('AMAR')
+  }
 
 
   constructor(private _ecole: EcoleService, private http: HttpClient, router: Router) {
@@ -74,12 +78,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   ngAfterViewInit(): void {
       console.log(this.marker)
   }
-  navigateToContact(){
-    this.router.navigate(['/contact']);
-  }
-  addMarker(event: google.maps.MapMouseEvent) {
-    this.markerPositions.push(event.latLng.toJSON());
-  }
+
+  // addMarker(event: google.maps.MapMouseEvent) {
+  //   this.markerPositions.push(event.latLng.toJSON());
+  // }
 
   /*------------------------------------------
 
@@ -118,59 +120,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
  }
   getMark(){
      this.ecoles.map((ec)=>{
-      let mark ={
-        position:{
-          lat:null,
-          lng:null,
-          title:null
-        }
-      }
-       mark.position.lat = ec.latitude
-       mark.position.lng = ec.longitude
-       mark.position.title = ec.nom_etablissement
-      // mark.position.title.adresse = ec.adresse_1
-       this.markers.push(mark)
-       console.log(mark)
 
+      let mar2:google.maps.LatLngLiteral ={lat:null,
+      lng:null}
+       mar2.lng = ec.longitude
+       mar2.lat = ec.latitude
+       this.markerPositions.push(mar2)
+       console.log(this.markerPositions)
 
      })
 
   }
-   contentString =
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
-    '<div id="bodyContent">' +
-    "<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large " +
-    "sandstone rock formation in the southern part of the " +
-    "Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) " +
-    "south west of the nearest large town, Alice Springs; 450&#160;km " +
-    "(280&#160;mi) by road. Kata Tjuta and Uluru are the two major " +
-    "features of the Uluru - Kata Tjuta National Park. Uluru is " +
-    "sacred to the Pitjantjatjara and Yankunytjatjara, the " +
-    "Aboriginal people of the area. It has many springs, waterholes, " +
-    "rock caves and ancient paintings. Uluru is listed as a World " +
-    "Heritage Site.</p>" +
-    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-    "https://en.wikipedia.org/w/index.php?title=Uluru</a> " +
-    "(last visited June 22, 2009).</p>" +
-    "</div>" +
-    "</div>";
-
-   infowindow = new google.maps.InfoWindow({
-    content: this.contentString,
-    ariaLabel: "Uluru",
-  });
-
-   getInfoMarker(marker: MarkerProperties){
-   let  infowindow = new google.maps.InfoWindow({
-       content: marker.position.title,
-       ariaLabel: marker.position.title,
-     });
-   infowindow.open({
-
-   })
-   }
-
+  openInfoWindow2(marker: MapMarker) {
+    this.infoWindow.open(marker);
+  }
 }
